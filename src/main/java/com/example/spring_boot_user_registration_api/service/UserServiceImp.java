@@ -14,8 +14,12 @@ public class UserServiceImp implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public String saveUser(User user) {
+        if(userRepository.findByEmail(user.getEmail())==null){
+            userRepository.save(user);
+            return "success";
+        }
+        return "email already taken";
     }
 
     @Override
