@@ -1,11 +1,12 @@
 package com.example.spring_boot_user_registration_api.controller;
 
+import com.example.spring_boot_user_registration_api.model.Data;
 import com.example.spring_boot_user_registration_api.model.User;
 import com.example.spring_boot_user_registration_api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -27,5 +28,9 @@ public class UserController {
     @GetMapping("user")
     public User findUser(@RequestParam String email){
         return userService.getUser(email);
+    }
+    @PostMapping("login")
+    public HashMap<String, User> login(@RequestBody Data data){
+        return userService.login(data);
     }
 }
